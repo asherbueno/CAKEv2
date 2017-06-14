@@ -11,6 +11,7 @@ class App extends Component {
     super();
 
     this.addItem = this.addItem.bind(this);
+    this.addToCart = this.addToCart.bind(this);
     //initialize state
     this.state = {
       items: {},
@@ -25,6 +26,12 @@ class App extends Component {
     this.setState({items})
   }
 
+  addToCart(key){
+    const order = {...this.state.order};
+    order[key] = order[key] + 1 || 1;
+    this.setState({ order });
+  }
+
   render() {
     return (
       <div className="hero">
@@ -33,7 +40,7 @@ class App extends Component {
           {
             Object
             .keys(this.state.items)
-            .map(key => <Items key={key} details={this.state.items[key]} />)
+            .map(key => <Items key={key} index={key} details={this.state.items[key]} addToCart={this.addToCart} />)
           }
         </ul>
         <Cart />
