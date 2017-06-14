@@ -1,8 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import { BrowserRouter, Match, Miss } from 'react-router';
+import App from './components/App';
+import Hero from './components/Hero'
+import notFound from './components/notFound'
 import registerServiceWorker from './registerServiceWorker';
-import './index.css';
+import './css/App.css';
+
+const Root = () => {
+  return (
+    <BrowserRouter>
+      <div>
+      <Match exactly pattern="/" component={Hero} />
+      <Miss component={notFound} />
+      </div>
+    </BrowserRouter>
+  )
+}
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
