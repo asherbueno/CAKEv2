@@ -5,6 +5,7 @@ import Inventory from './Inventory';
 import Origin from './Origin';
 import CollectionMan from './CollectionMan';
 import Items from './Items';
+import base from '../Base';
 
 class App extends Component {
   constructor(){
@@ -17,6 +18,17 @@ class App extends Component {
       items: {},
       order: {}
     };
+  }
+
+  componentWillMount(){
+  }
+
+  componentWillUnmount(){
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log('Something Changed');
+    console.log({nextProps, nextState});
   }
 
   addItem(item) {
@@ -43,7 +55,7 @@ class App extends Component {
             .map(key => <Items key={key} index={key} details={this.state.items[key]} addToCart={this.addToCart} />)
           }
         </ul>
-        <Cart />
+        <Cart items={this.state.items} order={this.state.order} />
         <Inventory addItem={this.addItem} />
         <Origin />
         <CollectionMan />
